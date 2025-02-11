@@ -49,7 +49,7 @@ def test_pages_availability_for_users(parametrized_client, url, status):
 @pytest.mark.parametrize(
     'url',
     (
-        NEWS_EDIT_URL, 
+        NEWS_EDIT_URL,
         NEWS_DELETE_URL
     ),
 )

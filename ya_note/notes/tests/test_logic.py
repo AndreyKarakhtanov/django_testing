@@ -31,7 +31,7 @@ class TestNoteCreation(TestBase):
 
     def test_user_can_create_note(self):
         """Тест: Залогиненный пользователь может создать заметку."""
-        Note.objects.all().delete() 
+        Note.objects.all().delete()
         notes_count = Note.objects.count()
         response = self.author_client.post(
             self.NOTES_ADD_URL,
