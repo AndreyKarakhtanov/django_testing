@@ -6,12 +6,8 @@ from pytest_django.asserts import assertRedirects, assertFormError
 from news.forms import BAD_WORDS, WARNING
 from news.models import Comment
 
+
 BAD_TEXT = f'Какой-то текст, {BAD_WORDS[0]}, еще текст'
-USERS_LOGIN_URL = pytest.lazy_fixture('users_login_url')
-NEWS_DETAIL_URL = pytest.lazy_fixture('news_detail_url')
-NEWS_EDIT_URL = pytest.lazy_fixture('news_edit_url')
-NEWS_DELETE_URL = pytest.lazy_fixture('news_delete_url')
-NEWS_DETAIL_REDIRECT_URL = pytest.lazy_fixture('news_detail_redirect_url')
 
 
 def test_anonymous_user_cant_create_comment(
@@ -58,9 +54,9 @@ def test_author_can_edit_comment(
     response = author_client.post(news_edit_url, form_data)
     assertRedirects(response, news_detail_url + '#comments')
     comment_from_db = Comment.objects.get(id=comment.id)
-    assert comment_from_db.news == news
+    assert comment_from_db.news == comment.news
     assert comment_from_db.text == form_data['text']
-    assert comment_from_db.author == author
+    assert comment_from_db.author == comment.author
 
 
 def test_author_can_delete_comment(

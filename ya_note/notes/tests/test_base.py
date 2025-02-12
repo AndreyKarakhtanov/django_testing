@@ -34,7 +34,7 @@ class TestBase(TestCase):
         cls.author = User.objects.create(username='Автор')
         cls.author_client = Client()
         cls.author_client.force_login(cls.author)
-        cls.reader = User.objects.create(username='Читатель')
+        cls.reader = User.objects.create(username='Другой пользователь')
         cls.reader_client = Client()
         cls.reader_client.force_login(cls.reader)
         cls.note = Note.objects.create(

@@ -99,23 +99,20 @@ class TestNoteEditDelete(TestBase):
         self.assertEqual(edited_note.title, self.form_data['title'])
         self.assertEqual(edited_note.text, self.form_data['text'])
         self.assertEqual(edited_note.slug, self.form_data['slug'])
+        self.assertEqual(edited_note.author, self.author)
 
     def test_user_cant_edit_note_of_another_user(self):
         """Тест: Пользователь не может редактировать чужие заметки."""
-        old_data = {
-            'title': self.note.title,
-            'text': self.note.text,
-            'slug': self.note.slug
-        }
         response = self.reader_client.post(
             self.NOTES_EDIT_URL,
             data=self.form_data
         )
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
         edited_note = Note.objects.get(id=self.note.id)
-        self.assertEqual(edited_note.title, old_data['title'])
-        self.assertEqual(edited_note.text, old_data['text'])
-        self.assertEqual(edited_note.slug, old_data['slug'])
+        self.assertEqual(edited_note.title, self.note.title)
+        self.assertEqual(edited_note.text, self.note.text)
+        self.assertEqual(edited_note.slug, self.note.slug)
+        self.assertEqual(edited_note.author, self.author)
 
     def test_author_can_delete_note(self):
         """Тест: Пользователь может удалять свои заметки."""
