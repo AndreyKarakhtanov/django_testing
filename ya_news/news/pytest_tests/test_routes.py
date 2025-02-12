@@ -5,10 +5,10 @@ from pytest_django.asserts import assertRedirects
 
 
 NEWS_HOME_URL = pytest.lazy_fixture('news_home_url')
-NEWS_DETAIL_URL = pytest.lazy_fixture('news_detail_url')
 USERS_LOGIN_URL = pytest.lazy_fixture('users_login_url')
 USERS_SIGNUP_URL = pytest.lazy_fixture('users_signup_url')
 USERS_LOGOUT_URL = pytest.lazy_fixture('users_logout_url')
+NEWS_DETAIL_URL = pytest.lazy_fixture('news_detail_url')
 NEWS_EDIT_URL = pytest.lazy_fixture('news_edit_url')
 NEWS_DELETE_URL = pytest.lazy_fixture('news_delete_url')
 CLIENT = pytest.lazy_fixture('client')
